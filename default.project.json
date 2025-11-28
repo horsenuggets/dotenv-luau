@@ -1,6 +1,6 @@
 {
     "name": "dotenv-luau",
     "tree": {
-        "$path": "./Source/Dotenv/"
+        "$path": "Source/Dotenv"
     }
 }
