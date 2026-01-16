@@ -1,5 +1,8 @@
-local fs = require("@lune/fs")
-local process = require("@lune/process")
+local _IS_ROBLOX = game ~= nil
+local IS_LUNE = pcall(function() require("@lune/fs") end)
+
+local fs = IS_LUNE and require("@lune/fs")
+local process = IS_LUNE and require("@lune/process")
 
 local Dotenv = {}
 
@@ -15,26 +18,26 @@ function Dotenv.parse(str: string): { [string?]: string? }
     local multilineKey = ""
     local multilineValue = ""
 
-    for line in str:gmatch("([^\n]+)\n") do
-        local key, value = line:match("(.+)=(.+)")
+    for line in str:gmatch(`([^\n]+)\n`) do
+        local key, value = line:match(`(.+)=(.+)`)
 
         if key and value then
             local firstChar = value:sub(1, 1)
             local lastChar = value:sub(#value, #value)
 
-            if firstChar == '"' then
-                if lastChar ~= '"' or #value == 1 then
+            if firstChar == `"` then
+                if lastChar ~= `"` or #value == 1 then
                     multiline = true
                 end
             end
 
             if not multiline then
-                value = value:gsub('^"(.*)"$', "%1")
-                value = value:gsub("^'(.*)'$", "%1")
+                value = value:gsub(`^"(.*)"$`, `%1`)
+                value = value:gsub(`^'(.*)'$`, `%1`)
 
                 env[key] = value
             else
-                value = value:gsub('^"(.*)', "%1")
+                value = value:gsub(`^"(.*)`, `%1`)
                 multilineKey = key
                 multilineValue = value
             end
@@ -42,8 +45,8 @@ function Dotenv.parse(str: string): { [string?]: string? }
             local lastChar = line:sub(#line, #line)
             local escapeChar = line:sub(#line - 1, #line - 1)
 
-            if lastChar == '"' and escapeChar ~= "\\" then
-                line = line:gsub('(.*)"$', "%1")
+            if lastChar == `"` and escapeChar ~= "\\" then
+                line = line:gsub(`(.*)"$`, `%1`)
                 multilineValue = multilineValue .. "\n" .. line
 
                 env[multilineKey] = multilineValue
@@ -65,9 +68,7 @@ end
 function Dotenv.load(overwrite: boolean?, path: string?)
     local target = path or ".env"
 
-    local success, result = pcall(function()
-        return fs.readFile(target)
-    end)
+    local success, result = pcall(function() return fs.readFile(target) end)
 
     local file: string
     if success then
