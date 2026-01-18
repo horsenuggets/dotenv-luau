@@ -1,5 +1,7 @@
 local _IS_ROBLOX = game ~= nil
-local IS_LUNE = pcall(function() require("@lune/fs") end)
+local IS_LUNE = pcall(function()
+    require("@lune/fs")
+end)
 
 local fs = IS_LUNE and require("@lune/fs")
 local process = IS_LUNE and require("@lune/process")
@@ -68,7 +70,9 @@ end
 function Dotenv.load(path: string?)
     local target = path or ".env"
 
-    local success, result = pcall(function() return fs.readFile(target) end)
+    local success, result = pcall(function()
+        return fs.readFile(target)
+    end)
 
     local file: string
     if success then
