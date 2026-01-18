@@ -19,7 +19,7 @@ function Dotenv.parse(str: string): { [string?]: string? }
     local multilineValue = ""
 
     for line in str:gmatch(`([^\n]+)\n`) do
-        local key, value = line:match(`(.+)=(.+)`)
+        local key, value = line:match(`([^=]+)=(.+)`)
 
         if key and value then
             local firstChar = value:sub(1, 1)
