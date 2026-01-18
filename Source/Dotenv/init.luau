@@ -5,10 +5,13 @@ end)
 
 local fs = IS_LUNE and require("@lune/fs")
 local process = IS_LUNE and require("@lune/process")
+local t = require("@packages/t")
 
 local Dotenv = {}
 
 function Dotenv.parse(str: string): { [string?]: string? }
+    assert(t.string(str), "Expected str to be a string.")
+
     str = str:gsub("\r", "")
     if str:sub(-1) ~= "\n" then
         str ..= "\n"
@@ -68,6 +71,8 @@ function Dotenv.parse(str: string): { [string?]: string? }
 end
 
 function Dotenv.load(path: string?)
+    assert(t.optional(t.string)(path), "Expected path to be a string or nil.")
+
     local target = path or ".env"
 
     local success, result = pcall(function()

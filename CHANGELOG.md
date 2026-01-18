@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.2
+- Added runtime typechecking to parse and load functions using t library
+
 ## 0.1.1
 - Added Wally publishing to release workflow
 
