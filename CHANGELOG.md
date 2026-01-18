@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.1
+- Added Wally publishing to release workflow
+
 ## 0.1.0
 - Added CI workflows for PRs to main and release branches
 - Added test filtering by name to RunTests script
