@@ -1,4 +1,5 @@
 .DS_Store
+.claude
 .env
 .local
 .vscode
@@ -10,6 +11,7 @@
 *.rbxm
 *.rbxmx
 Build
+DevPackages
 Packages
 sourcemap.json
 Tools

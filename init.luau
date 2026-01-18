@@ -1,1 +1,1 @@
-return require("./dotenv-luau/Source/Dotenv")
+return require("@self/Source/Dotenv")

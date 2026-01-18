@@ -65,7 +65,7 @@ function Dotenv.parse(str: string): { [string?]: string? }
     return env
 end
 
-function Dotenv.load(overwrite: boolean?, path: string?)
+function Dotenv.load(path: string?)
     local target = path or ".env"
 
     local success, result = pcall(function() return fs.readFile(target) end)
@@ -80,9 +80,7 @@ function Dotenv.load(overwrite: boolean?, path: string?)
     local env = Dotenv.parse(file)
 
     for key, value in env do
-        if not process.env[key] or overwrite then
-            process.env[key] = value
-        end
+        process.env[key] = value
     end
 end
 
