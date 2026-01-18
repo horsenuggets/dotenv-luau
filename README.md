@@ -8,7 +8,7 @@ Add to your `wally.toml`:
 
 ```toml
 [dependencies]
-Dotenv = "horsenuggets/dotenv-luau@0.0.2"
+Dotenv = "horsenuggets/dotenv-luau@0.1.0"
 ```
 
 Then run:
