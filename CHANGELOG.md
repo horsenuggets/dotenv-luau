@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.3
+- Synced project configuration with luau-package-template
+- Updated luau-lsp to horsenuggets fork 1.63.0-horse.1.0
+- Updated lune to 0.10.4-horse.10.0
+- Removed branch name validation from CI
+- Removed Roblox globals from .luaurc
+
 ## 0.1.2
 - Added runtime typechecking to parse and load functions using t library
 
