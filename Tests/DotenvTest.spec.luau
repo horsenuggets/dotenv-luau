@@ -1,6 +1,6 @@
 --[[
 
-DotenvTest
+DotenvTest.spec
 
 Tests for the Dotenv parser module.
 
