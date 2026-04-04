@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.4
+- Standardized test runner with code coverage
+- Included .luaurc in Wally package
+- Updated tooling: lune 0.10.4-horse.13.0, luau-lsp 1.63.0-horse.1.4, rojo 7.7.0-rc.1-horse.0.6
+- Added branch name validation to CI
+- Fixed .luaurc lune typedef version
+
 ## 0.1.3
 - Synced project configuration with luau-package-template
 - Updated luau-lsp to horsenuggets fork 1.63.0-horse.1.0
