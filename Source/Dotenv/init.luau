@@ -1,3 +1,12 @@
+--[[
+
+Dotenv
+
+Parses .env files and loads environment variables. Supports single-line
+values (with optional quoting) and multi-line double-quoted values.
+
+--]]
+
 local _IS_ROBLOX = game ~= nil
 local IS_LUNE = pcall(function()
     require("@lune/fs")
