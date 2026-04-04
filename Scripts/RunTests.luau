@@ -4,45 +4,22 @@
 
 RunTests
 
-Executes all test suites and exits with appropriate status code. Optionally pass a test
-name as an argument to run only that test suite.
-
-[Usage] lune run ./Scripts/RunTests.luau [TestName]
+Executes all test suites and exits with appropriate status code.
 
 --]]
 
 local Testable = require("@devpackages/Testable")
 local process = require("@lune/process")
-local stdio = require("@lune/stdio")
 
-local TESTS = {
-    { Name = "DotenvTest", Func = require("@tests/DotenvTest.spec") },
-}
+Testable.configure({
+	Coverage = true,
+	CoverageThreshold = 0,
+	CoverageRoots = script.Parent.Parent.Source,
+})
 
 local function runTests()
-    local filterName = process.args[1]
-    local testsToRun = TESTS
-
-    if filterName then
-        testsToRun = {}
-        for _, test in TESTS do
-            if test.Name == filterName then
-                table.insert(testsToRun, test)
-            end
-        end
-
-        if #testsToRun == 0 then
-            stdio.ewrite(`No test suite found with name "{filterName}".\n`)
-            stdio.ewrite("Available test suites:\n")
-            for _, test in TESTS do
-                stdio.ewrite(`  - {test.Name}\n`)
-            end
-            process.exit(1)
-        end
-    end
-
-    local _, passed = Testable.run(testsToRun)
-    process.exit(if passed then 0 else 1)
+	local _, passed = Testable.run(script.Parent.Parent.Tests)
+	process.exit(if passed then 0 else 1)
 end
 
 runTests()
