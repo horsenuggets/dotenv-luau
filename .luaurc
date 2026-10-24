@@ -2,8 +2,9 @@
     "aliases": {
         "devpackages": "./DevPackages/",
         "dotenvluau": "./Source/Dotenv/",
-        "lune": "~/.lune/.typedefs/0.10.4-horse.14.5/",
+        "lune": "~/.lune/.typedefs/0.11.1-horse.16.1/",
         "packages": "./Packages/",
+        "submodules": "./Submodules/",
         "tests": "./Tests/"
     },
     "globals": [
@@ -12,13 +13,14 @@
         "beforeAll",
         "beforeEach",
         "describe",
-        "game",
         "elapsedTime",
         "expect",
         "fail",
         "fdescribe",
         "fit",
+        "game",
         "it",
+        "project",
         "xdescribe",
         "xit"
     ]
