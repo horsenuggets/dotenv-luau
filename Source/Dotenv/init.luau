@@ -7,16 +7,16 @@ values (with optional quoting) and multi-line double-quoted values.
 
 --]]
 
-local _IS_ROBLOX = game ~= nil
-local IS_LUNE = pcall(function()
+const _IS_ROBLOX = game ~= nil
+const IS_LUNE = pcall(function()
     require("@lune/fs")
 end)
 
-local fs = IS_LUNE and require("@lune/fs")
-local process = IS_LUNE and require("@lune/process")
-local t = require("@packages/t")
+const fs = IS_LUNE and require("@lune/fs")
+const process = IS_LUNE and require("@lune/process")
+const t = require("@packages/t")
 
-local Dotenv = {}
+const Dotenv = {}
 
 function Dotenv.parse(str: string): { [string?]: string? }
     assert(t.string(str), "Expected str to be a string.")
@@ -26,7 +26,7 @@ function Dotenv.parse(str: string): { [string?]: string? }
         str ..= "\n"
     end
 
-    local env: { [string?]: string? } = {}
+    const env: { [string?]: string? } = {}
 
     local multiline = false
     local multilineKey = ""
@@ -36,8 +36,8 @@ function Dotenv.parse(str: string): { [string?]: string? }
         local key, value = line:match(`([^=]+)=(.+)`)
 
         if key and value then
-            local firstChar = value:sub(1, 1)
-            local lastChar = value:sub(#value, #value)
+            const firstChar = value:sub(1, 1)
+            const lastChar = value:sub(#value, #value)
 
             if firstChar == `"` then
                 if lastChar ~= `"` or #value == 1 then
@@ -56,8 +56,8 @@ function Dotenv.parse(str: string): { [string?]: string? }
                 multilineValue = value
             end
         elseif multiline then
-            local lastChar = line:sub(#line, #line)
-            local escapeChar = line:sub(#line - 1, #line - 1)
+            const lastChar = line:sub(#line, #line)
+            const escapeChar = line:sub(#line - 1, #line - 1)
 
             if lastChar == `"` and escapeChar ~= "\\" then
                 line = line:gsub(`(.*)"$`, `%1`)
@@ -82,9 +82,9 @@ end
 function Dotenv.load(path: string?)
     assert(t.optional(t.string)(path), "Expected path to be a string or nil.")
 
-    local target = path or ".env"
+    const target = path or ".env"
 
-    local success, result = pcall(function()
+    const success, result = pcall(function()
         return fs.readFile(target)
     end)
 
@@ -95,7 +95,7 @@ function Dotenv.load(path: string?)
         error(`Dotenv.load failed to read file "{target}". {result}.`)
     end
 
-    local env = Dotenv.parse(file)
+    const env = Dotenv.parse(file)
 
     for key, value in env do
         process.env[key] = value
