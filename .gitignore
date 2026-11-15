@@ -23,6 +23,11 @@ Tools
 # Project
 /CONTEXT.md
 
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+
 # Worktrees
 /.worktrees/
 /.wt/
