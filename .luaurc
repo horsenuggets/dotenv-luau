@@ -8,20 +8,7 @@
         "tests": "./Tests/"
     },
     "globals": [
-        "afterAll",
-        "afterEach",
-        "beforeAll",
-        "beforeEach",
-        "describe",
-        "elapsedTime",
-        "expect",
-        "fail",
-        "fdescribe",
-        "fit",
         "game",
-        "it",
-        "project",
-        "xdescribe",
-        "xit"
+        "project"
     ]
 }

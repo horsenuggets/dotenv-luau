@@ -10,6 +10,8 @@ const fs = require("@lune/fs")
 const process = require("@lune/process")
 
 const Dotenv = require("@dotenvluau")
+const Testable = require("@devpackages/Testable")
+const describe, expect, it = Testable.describe, Testable.expect, Testable.it
 
 const function createTempDir(): string
     const tempDir = `.test-temp-{os.clock()}-{math.random(1000, 9999)}`
